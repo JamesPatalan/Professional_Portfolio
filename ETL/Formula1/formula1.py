@@ -106,7 +106,10 @@ def get_race_data(master_url_lst):
         if url in fours:
             data = pd.read_html(url)
             data = data[4]
-        
+
+         elif url in ones:
+            data = pd.read_html(url)
+            data = data[1]
 
         elif 'https://en.wikipedia.org/wiki/2018_Abu_Dhabi_Grand_Prix' in url:
             data = pd.read_html(url)
