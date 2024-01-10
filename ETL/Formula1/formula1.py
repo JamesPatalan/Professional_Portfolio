@@ -284,6 +284,24 @@ def leclerc(formula1):
     plt.show()
 
 
+def standardize_drivers(driver):
+    if 'Nikita' in driver:
+        return 'Nikita Mazepin'
+    else:
+        return driver
+    
+
+def gl_drivers(formula1):
+    ax = plt.axes()
+    formula1.groupby('Driver')['Gain-Loss'].mean().plot(kind='bar', color=('black', 'black','black','black','black','black','black','black','black','black','black','black','black','black','black','black','black','black','black','black','black','black','black','black','black','black','red','black','black','black','green'))
+    plt.suptitle('Average Gain-Loss by Driver', weight='bold')
+    plt.title('Data Scraped from Wikipedia')
+    plt.xlabel('Driver', weight='bold')
+    plt.ylabel('Average Gain-Loss', weight='bold')
+    ax.set_facecolor('silver')
+    plt.show()
+
+
 def main():
     
     season_url_lst = create_season_url_lst()
@@ -307,6 +325,9 @@ def main():
     russel(formula1)
     norris(formula1)
     leclerc(formula1)
+
+    formula1['Driver'] = formula1['Driver'].apply(standardize_drivers)
+    gl_drivers(formula1)
 
 
 if __name__ == '__main__':
